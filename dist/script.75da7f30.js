@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"elements.js":[function(require,module,exports) {
+})({"module/elements.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -128,7 +128,7 @@ var jokeContainer = document.querySelector(".joke p");
 exports.jokeContainer = jokeContainer;
 var button = document.querySelector(".getJoke");
 exports.button = button;
-},{}],"fetchData.js":[function(require,module,exports) {
+},{}],"module/fetchData.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -190,7 +190,7 @@ function _fetchJokes() {
   }));
   return _fetchJokes.apply(this, arguments);
 }
-},{}],"preloader.js":[function(require,module,exports) {
+},{}],"module/preloader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -206,7 +206,7 @@ function preLoader() {
   preLoader.append(circle);
   return preLoader;
 }
-},{}],"handleClick.js":[function(require,module,exports) {
+},{}],"module/handleClick.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -214,11 +214,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = handleClick;
 
-var _fetchData = _interopRequireDefault(require("./fetchData.js"));
+var _fetchData = _interopRequireDefault(require("../module/fetchData.js"));
 
-var _elements = require("./elements.js");
+var _elements = require("../module/elements.js");
 
-var _preloader = _interopRequireDefault(require("./preloader.js"));
+var _preloader = _interopRequireDefault(require("../module/preloader.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -242,42 +242,44 @@ function _handleClick() {
         switch (_context.prev = _context.next) {
           case 0:
             url = "https://icanhazdadjoke.com/";
+            this.disabled = true;
             _elements.jokeContainer.textContent = '';
 
             _elements.jokeContainer.append((0, _preloader.default)());
 
-            _context.next = 5;
+            _context.next = 6;
             return (0, _fetchData.default)(url);
 
-          case 5:
+          case 6:
             response = _context.sent;
 
             if (response) {
-              _context.next = 8;
+              _context.next = 9;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 8:
+          case 9:
             joke = response.joke;
             _elements.jokeContainer.textContent = joke;
+            this.disabled = false;
 
-          case 10:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, this);
   }));
   return _handleClick.apply(this, arguments);
 }
-},{"./fetchData.js":"fetchData.js","./elements.js":"elements.js","./preloader.js":"preloader.js"}],"script.js":[function(require,module,exports) {
+},{"../module/fetchData.js":"module/fetchData.js","../module/elements.js":"module/elements.js","../module/preloader.js":"module/preloader.js"}],"script.js":[function(require,module,exports) {
 "use strict";
 
-var _elements = require("./elements.js");
+var _elements = require("./module/elements.js");
 
-var _handleClick = _interopRequireDefault(require("./handleClick.js"));
+var _handleClick = _interopRequireDefault(require("./module/handleClick.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -303,7 +305,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
     }
   }, _callee);
 }))();
-},{"./elements.js":"elements.js","./handleClick.js":"handleClick.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./module/elements.js":"module/elements.js","./module/handleClick.js":"module/handleClick.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -331,7 +333,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54185" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52850" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

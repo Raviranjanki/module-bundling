@@ -4,10 +4,12 @@ import preLoader from "../module/preloader.js";
 
 export default async function handleClick() {
     const url = "https://icanhazdadjoke.com/";
+    this.disabled = true;
     jokeContainer.textContent = '';
     jokeContainer.append(preLoader());
     const response = await fetchJokes(url);
     if (!response) return;
     const joke = response.joke;
     jokeContainer.textContent = joke;
+    this.disabled = false;
 }
